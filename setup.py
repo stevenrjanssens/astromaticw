@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
+from setuptools import setup, find_packages
 
 setup(
 	name='SExtractorW',
@@ -9,6 +9,6 @@ setup(
 	author='Steven Janssens',
 	url='http://github.com/stevenrjanssens/SExtractorW',
 	packages=['sextractorw'],
-	package_dir={'sextractorw': 'src/SExtractorW'},
+	package_dir={'sextractorw': 'src/sextractorw'},
         package_data={'sextractorw': ['config/*']}
 )

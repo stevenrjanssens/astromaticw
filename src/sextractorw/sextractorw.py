@@ -48,6 +48,14 @@ class SExtractorW:
                 filter_name = os.path.join(self.config_dir, 'default.conv')
                 self.kwconfig.update({'FILTER_NAME': filter_name})
 
+            # more sensible memory defaults
+            if 'MEMORY_OBJSTACK' not in kwargs:
+                self.kwconfig.update({'MEMORY_OBJSTACK': 30000})
+            if 'MEMORY_PIXSTACK' not in kwargs:
+                self.kwconfig.update({'MEMORY_PIXSTACK': 300000})
+            if 'MEMORY_BUFSIZE' not in kwargs:
+                self.kwconfig.update({'MEMORY_BUFSIZE': 30000})
+
 
     def _create_outparams_file(self, output_params):
         """

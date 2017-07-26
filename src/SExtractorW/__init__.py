@@ -1,1 +1,0 @@
-from .SExtractorW import SExtractorW

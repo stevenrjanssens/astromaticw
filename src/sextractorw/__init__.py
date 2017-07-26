@@ -1,0 +1,1 @@
+from sextractorw import SExtractorW

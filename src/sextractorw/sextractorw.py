@@ -98,9 +98,9 @@ class SExtractorW:
             run_params.update({'PARAMETERS_NAME': outparams_name})
 
         # try and find filter
-        if 'FILTER_NAME' in kwargs and not os.path.exists(kwargs['FILTER_NAME']):
-            filter_name = os.path.join(self.config_dir, kwargs['FILTER_NAME'])
-            self.run_params.update({'FILTER_NAME': filter_name})
+        if 'FILTER_NAME' in run_params and not os.path.exists(run_params['FILTER_NAME']):
+            filter_name = os.path.join(self.config_dir, run_params['FILTER_NAME'])
+            run_params.update({'FILTER_NAME': filter_name})
 
         command = [self.sexpath, '-c', self.config_file, image]
         for kw in run_params:

@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
 	name='SExtractorW',
-	version='0.1.0',
+	version='0.1.1',
 	description='A low-level Source Extractor wrapper',
 	author='Steven Janssens',
 	url='http://github.com/stevenrjanssens/sextractorw',

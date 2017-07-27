@@ -8,7 +8,7 @@ setup(
 	description='A low-level Source Extractor wrapper',
 	author='Steven Janssens',
 	url='http://github.com/stevenrjanssens/sextractorw',
-	packages=['sextractorw'],
-	package_dir={'sextractorw': 'src/sextractorw'},
+	packages=find_packages('src'),
+	package_dir={'': 'src'},
         package_data={'sextractorw': ['config/*']}
 )

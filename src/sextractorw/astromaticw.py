@@ -138,3 +138,48 @@ class SExtractorW:
         image = ','.join([detect, measure])
 
         return self.run(image, output_params, **kwargs)
+
+
+class PSFExW:
+    """Low-level PSFEx wrapper."""
+
+    def __init__(self, config_file='', psfexpath='psfex', **kwargs):
+        """
+        Configure PSFEx. Settings here will be passed to all PSFEx
+        calls unless overridden.
+
+        Arguments:
+            config_file (str): PSFEx configuration file
+            psfexpath (str): PSFEx executable location
+            **kwargs: Additional parameters passed directly to PSFEx
+        """
+        self.psfexpath = psfexpath
+        self.kwconfig = kwargs
+
+        module_dir = os.path.dirname(sys.modules[__name__].__file__)
+        self.config_dir = os.path.join(module_dir, 'config')
+
+        if config_file:
+            self.config_file = config_file
+        else:
+            self.config_file = os.path.join(self.config_dir, 'default.psfex')
+
+
+    def run(self, catalog, **kwargs):
+        """
+        Run PSFEx.
+        
+        Arguments:
+            catalog (str): FITS_LDAC catalog
+            **kwargs: additional parameters passed directly to SExtractor
+
+        Note:
+            **kwargs passed here are not saved.
+        """
+        run_params = copy.deepcopy(self.kwconfig)
+        run_params.update(kwargs)
+
+        command = [self.psfexpath, '-c', self.config_file, catalog]
+        for kw in run_params:
+            command.extend(['-'+str(kw), str(run_params[kw]).replace(' ', '')])
+        return subprocess.call(command)

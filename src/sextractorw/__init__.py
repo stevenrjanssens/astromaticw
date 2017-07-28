@@ -1,1 +1,1 @@
-from .sextractorw import SExtractorW
+from .sextractorw import SExtractorW, PSFExW

@@ -1,1 +1,1 @@
-from .sextractorw import SExtractorW, PSFExW
+from .astromaticw import SExtractorW, PSFExW

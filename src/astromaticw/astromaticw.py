@@ -52,7 +52,7 @@ class SExtractorW:
             if 'MEMORY_OBJSTACK' not in kwargs:
                 self.kwconfig.update({'MEMORY_OBJSTACK': 30000})
             if 'MEMORY_PIXSTACK' not in kwargs:
-                self.kwconfig.update({'MEMORY_PIXSTACK': 300000})
+                self.kwconfig.update({'MEMORY_PIXSTACK': 3000000})
             if 'MEMORY_BUFSIZE' not in kwargs:
                 self.kwconfig.update({'MEMORY_BUFSIZE': 30000})
 

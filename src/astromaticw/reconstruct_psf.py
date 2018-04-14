@@ -1,13 +1,12 @@
 """reconstruct_psf.py -- creates PSF images at specified location
 
 Usage:
-    python psf.py <psffile>...
+    recontruct_psf.py <psffile> <x> <y> <outfits>
 
-Notes:
-    Run this as a script to inspect PSFs.
 """
 
 from __future__ import print_function
+import docopt
 import os
 import sys
 import numpy
@@ -54,12 +53,5 @@ def reconstruct_psf(psffile, x_image, y_image, outfits, overwrite=False):
         newhdu.writeto(outfits, overwrite=overwrite)
 
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        print(__doc__)
-
-    test_coords = ((1667, 4943), (5509, 1881), (8403, 5672), (4367, 9017), (4786, 5089))
-
-    for psffile in sys.argv[1:]:
-        for i, coord in enumerate(test_coords):
-            outfits = os.path.splitext(os.path.basename(psffile))[0] + '_pos{}.fits'.format(i)
-            reconstruct_psf(psffile, coord[0], coord[1], outfits)
+    arguments = docopt.docopt(__doc__)
+    reconstruct_psf(arguments['<psffile>'], float(arguments['<x>']), float(arguments['<y>']), arguments['<outfits>'])

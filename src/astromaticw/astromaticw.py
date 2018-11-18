@@ -171,7 +171,7 @@ class PSFExW:
         
         Arguments:
             catalog (str): FITS_LDAC catalog
-            **kwargs: additional parameters passed directly to SExtractor
+            **kwargs: additional parameters passed directly to PSFEx
 
         Note:
             **kwargs passed here are not saved.

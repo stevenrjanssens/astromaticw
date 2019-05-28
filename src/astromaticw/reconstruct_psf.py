@@ -14,7 +14,7 @@ import warnings
 from astropy.io import fits
 from astropy.utils.exceptions import AstropyWarning
 
-def reconstruct_psf(psffile, x_image, y_image, outfits, overwrite=False):
+def reconstruct_psf(psffile, x_image, y_image, outfits="", overwrite=False):
     """Reconstruct PSF at (x, y) with polynom degree 3 variation in (x, y)."""
     with fits.open(psffile) as hdulist:
         chi2 = hdulist[1].header['CHI2']
@@ -40,17 +40,20 @@ def reconstruct_psf(psffile, x_image, y_image, outfits, overwrite=False):
             xxy*psf_vector[6] + yy*psf_vector[7] + xyy*psf_vector[8] +\
             yyy*psf_vector[9]
 
-    newhdu = fits.PrimaryHDU(psf)
-    newhdu.header.set('PSFEX', psffile, "PSFEx .psf file")
-    newhdu.header.set('X_IMAGE', x_image, "X coord of PSF reconstruction")
-    newhdu.header.set('Y_IMAGE', y_image, "Y coord of PSF reconstruction")
-    newhdu.header.set('CHI2', chi2, "Final Chi2")
-    newhdu.header.set('PSF_FWHM', psf_fwhm, "Mean PSF FWHM")
-    newhdu.header.add_comment(" Keywords from PSFEx PSF model file", after="Y_IMAGE")
-    # ignore comment truncation warning
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore", AstropyWarning)
-        newhdu.writeto(outfits, overwrite=overwrite)
+    if not outfits:
+        return psf
+    else:
+        newhdu = fits.PrimaryHDU(psf)
+        newhdu.header.set('PSFEX', psffile, "PSFEx .psf file")
+        newhdu.header.set('X_IMAGE', x_image, "X coord of PSF reconstruction")
+        newhdu.header.set('Y_IMAGE', y_image, "Y coord of PSF reconstruction")
+        newhdu.header.set('CHI2', chi2, "Final Chi2")
+        newhdu.header.set('PSF_FWHM', psf_fwhm, "Mean PSF FWHM")
+        newhdu.header.add_comment(" Keywords from PSFEx PSF model file", after="Y_IMAGE")
+        # ignore comment truncation warning
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", AstropyWarning)
+            newhdu.writeto(outfits, overwrite=overwrite)
 
 if __name__ == '__main__':
     arguments = docopt.docopt(__doc__)

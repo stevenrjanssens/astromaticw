@@ -40,9 +40,7 @@ def reconstruct_psf(psffile, x_image, y_image, outfits="", overwrite=False):
             xxy*psf_vector[6] + yy*psf_vector[7] + xyy*psf_vector[8] +\
             yyy*psf_vector[9]
 
-    if not outfits:
-        return psf
-    else:
+    if outfits:
         newhdu = fits.PrimaryHDU(psf)
         newhdu.header.set('PSFEX', psffile, "PSFEx .psf file")
         newhdu.header.set('X_IMAGE', x_image, "X coord of PSF reconstruction")
@@ -54,6 +52,8 @@ def reconstruct_psf(psffile, x_image, y_image, outfits="", overwrite=False):
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", AstropyWarning)
             newhdu.writeto(outfits, overwrite=overwrite)
+
+    return psf
 
 if __name__ == '__main__':
     arguments = docopt.docopt(__doc__)

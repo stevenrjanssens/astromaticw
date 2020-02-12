@@ -11,7 +11,7 @@ from . import reconstruct_psf
 # Sirianni et al. (2005) aperture correction from 1" diameter to infinity
 sirianni05_apcor = 0.087
 
-def apcor(xi, yi, psffile, diameter=4, pixel_scale=0.03):
+def apcor(xi, yi, psffile, diameter, pixel_scale):
     """
     Aperture correct to an infinite aperture.
 

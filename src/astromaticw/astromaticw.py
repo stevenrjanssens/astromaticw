@@ -67,9 +67,10 @@ class SExtractorW:
         outparams_contents = '\n'.join(output_params)
         # creating instance variable delays garbage collection so tmpfile is
         # not deleted
-        self._outparams_fp = tempfile.NamedTemporaryFile(bufsize=0)
-        self._outparams_fp.write(outparams_contents)
-        return self._outparams_fp.name
+        self._outparams_tempfile = tempfile.NamedTemporaryFile()
+        with open(self._outparams_tempfile.name, 'w') as fp:
+            fp.write(outparams_contents)
+        return self._outparams_tempfile.name
 
 
     def run(self, image, output_params=[], **kwargs):

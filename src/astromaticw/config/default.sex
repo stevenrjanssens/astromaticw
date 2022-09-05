@@ -1,5 +1,5 @@
-# Default configuration file for SExtractor 2.19.5
-# EB 2017-11-20
+# Default configuration file for SExtractor 2.25.3
+# EB 2022-08-31
 #
  
 #-------------------------------- Catalog ------------------------------------
@@ -46,6 +46,11 @@ WEIGHT_THRESH                   # weight threshold[s] for bad pixels
 FLAG_IMAGE       flag.fits      # filename for an input FLAG-image
 FLAG_TYPE        OR             # flag pixel combination: OR, AND, MIN, MAX
                                 # or MOST
+
+#----------------------- Differential Geometry Map ---------------------------
+
+DGEO_TYPE        NONE           # Differential geometry map type: NONE or PIXEL
+DGEO_IMAGE       dgeo.fits      # Filename for input differential geometry image
 
 #------------------------------ Photometry -----------------------------------
  
@@ -114,7 +119,7 @@ VERBOSE_TYPE     NORMAL         # can be QUIET, NORMAL or FULL
 HEADER_SUFFIX    .head          # Filename extension for additional headers
 WRITE_XML        N              # Write XML file (Y/N)?
 XML_NAME         sex.xml        # Filename for XML output
-XSL_URL          file:///usr/local/Cellar/sextractor/2.19.5/share/sextractor/sextractor.xsl
+XSL_URL          file:///usr/local/share/sextractor/sextractor.xsl
                                 # Filename for XSL style-sheet
 NTHREADS         1              # 1 single thread
 

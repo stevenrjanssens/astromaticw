@@ -5,11 +5,7 @@ Usage:
 
 """
 
-from __future__ import print_function
 import docopt
-import os
-import sys
-import numpy
 import warnings
 from astropy.io import fits
 from astropy.utils.exceptions import AstropyWarning

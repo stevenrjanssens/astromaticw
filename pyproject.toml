@@ -8,7 +8,7 @@ description='Low-level astromatic wrappers'
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "astropy>=6.0.1",
+    "astropy>=5.3.1",
     "photutils>=1.11.0",
 ]
 
